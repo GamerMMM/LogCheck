@@ -49,37 +49,10 @@ class MainWindow(QMainWindow):
             self.search_table.clear_table()
 
     def _input_regex_filter(self):
-        # def _input_regex_filter(self):
         editor = self._get_current_editor()
         if editor and self.search_table:
             self.search_table.add_regex_entry_from_user(self, editor)
 
-        # pattern, ok = QInputDialog.getText(self, "正则输入", "请输入正则表达式：")
-        # if not ok or not pattern.strip():
-        #     return
-
-        # editor = self._get_current_editor()
-        # if not editor:
-        #     return
-
-        # try:
-        #     regex = re.compile(pattern)
-        # except re.error as e:
-        #     print(f"正则表达式错误: {e}")
-        #     return
-
-        # matches = []
-        # for line in editor.toPlainText().splitlines():
-        #     if regex.search(line):
-        #         matches.append(line.strip())
-
-        # if not matches:
-        #     print("无匹配结果")
-        #     return
-
-        # hint_count = len(matches)
-        # desc = f"包含：{pattern}\n排除："
-        # self._display_results(hint_count, pattern, desc)
 
     def _import_logs(self):
         files, _ = QFileDialog.getOpenFileNames(

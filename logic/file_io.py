@@ -2,14 +2,21 @@ import os
 import re
 from PyQt5.QtWidgets import QFileDialog
 from widgets.code_editor import CodeEditor
+from logic.para_loading import ParaLoadFile
+
+import time
 
 class FileHandler:
-    def load_file(self, filepath: str) -> str | None:
+    def load_file(self, filepath: str, num_chunks: int=8) -> str | None:
+        start_time = time.time()
         if not os.path.exists(filepath):
             return None
         try:
-            with open(filepath, 'r', encoding='utf-8', errors='ignore') as f:
-                return f.read()
+            text = ParaLoadFile.main(filepath, num_chunks)
+            end_time = time.time()
+            print(f"线程数：{num_chunks}，读取文件时间: {end_time - start_time} 秒")
+            return text
+
         except Exception as e:
             print(f"读取文件失败: {e}")
             return None
