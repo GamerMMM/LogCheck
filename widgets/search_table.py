@@ -46,21 +46,31 @@ class SearchTable(QTableWidget):
 
     def _format_expression(self, include_keywords: list[str], exclude_keywords: list[str]) -> str:
         """
-        格式化搜索表达式显示
+        格式化搜索表达式显示 - 修复逻辑显示
         
-        只显示被勾选的条件
+        只显示被勾选的条件，使用正确的逻辑表示
         """
         parts = []
         
         if include_keywords:
-            include_expr = " | ".join(f"'{kw}'" for kw in include_keywords)
-            parts.append(f"({include_expr})")
+            if len(include_keywords) == 1:
+                include_expr = f"'{include_keywords[0]}'"
+            else:
+                # 多个包含词使用 AND 逻辑
+                include_expr = " & ".join(f"'{kw}'" for kw in include_keywords)
+                include_expr = f"({include_expr})"
+            parts.append(include_expr)
         
         if exclude_keywords:
-            exclude_expr = " | ".join(f"'{kw}'" for kw in exclude_keywords)
-            parts.append(f"&! ({exclude_expr})")
+            if len(exclude_keywords) == 1:
+                exclude_expr = f"!'{exclude_keywords[0]}'"
+            else:
+                # 多个排除词使用 OR 逻辑（任一匹配就排除）
+                exclude_expr = " | ".join(f"'{kw}'" for kw in exclude_keywords)
+                exclude_expr = f"!({exclude_expr})"
+            parts.append(exclude_expr)
         
-        return " ".join(parts) if parts else "无条件"
+        return " & ".join(parts) if parts else "无条件"
 
     def _format_description(self, include_keywords: list[str], exclude_keywords: list[str]) -> str:
         """格式化描述信息"""
@@ -224,13 +234,10 @@ class SearchTable(QTableWidget):
         # 这里需要根据实际的编辑器接口来获取文本内容
         # 由于TextDisplay没有toPlainText方法，需要另想办法
         # 暂时跳过实际匹配，直接添加条目
+
+        return pattern
         
-        self.table_add_row(
-            hit_count=0,  # 暂时设为0，实际应该进行搜索
-            include_keywords=[pattern],
-            exclude_keywords=[],
-            description="（来自正则输入）"
-        )
+        
 
     def set_all_checked(self, checked: bool):
         """
