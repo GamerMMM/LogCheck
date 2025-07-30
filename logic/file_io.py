@@ -1,13 +1,14 @@
 import os
 import re
 from PyQt5.QtWidgets import QFileDialog
-from widgets.code_editor import CodeEditor
+from widgets.code_editor import TextDisplay
 from logic.para_loading import ParaLoadFile
 
 import time
 
 class FileHandler:
     def load_file(self, filepath: str, num_chunks: int=8) -> str | None:
+        
         start_time = time.time()
         if not os.path.exists(filepath):
             return None
@@ -21,7 +22,7 @@ class FileHandler:
             print(f"读取文件失败: {e}")
             return None
 
-    def save_filtered_result(self, editor: CodeEditor,
+    def save_filtered_result(self, editor: TextDisplay,
                              include_keywords: list[str],
                              exclude_keywords: list[str],
                              show_only: bool,

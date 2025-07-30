@@ -109,6 +109,13 @@ border-radius:2px
        </widget>
       </item>
       <item>
+       <widget class="QLabel" name="status_label">
+        <property name="text">
+         <string>等待上传中</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QTextEdit" name="in_word">
         <property name="styleSheet">
          <string notr="true">QTextEdit{
@@ -351,7 +358,7 @@ QTabWidget::tab-bar {
     <string>打开一个log文件</string>
    </property>
    <property name="whatsThis">
-    <string>打开一个log文件</string>
+    <string/>
    </property>
   </action>
   <action name="menu_batchopen">
@@ -368,6 +375,9 @@ QTabWidget::tab-bar {
    <property name="text">
     <string>下载</string>
    </property>
+   <property name="statusTip">
+    <string>下载词条过滤结果和过滤条件信息</string>
+   </property>
   </action>
   <action name="action1_4">
    <property name="text">
@@ -382,6 +392,9 @@ QTabWidget::tab-bar {
   <action name="norm_input">
    <property name="text">
     <string>扩展正则过滤</string>
+   </property>
+   <property name="statusTip">
+    <string>使用正则表达式进行词条过滤（仅支持全文过滤）</string>
    </property>
   </action>
  </widget>
