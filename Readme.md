@@ -4,7 +4,7 @@
 
 1. 菜单栏“文件”中导入（可以导入单个文件，也可以批量导入文件）
 
-   <img src="D:\LSBT\LogCheck\LogCheck\img\upload_file.png" alt="upload_file" style="zoom:40%;" />
+   <img src=".\img\upload_file.png" alt="upload_file" style="zoom:40%;" />
 
 2. 拖拽导入
 
@@ -17,7 +17,7 @@
 
 2. 正则表达式搜索：按照引导框键入正则表达式搜索即可
 
-   <img src="D:\LSBT\LogCheck\LogCheck\img\regex_search.png" alt="regex_search" style="zoom:40%;" />
+   <img src=".\img\regex_search.png" alt="regex_search" style="zoom:40%;" />
 
 ### 组件说明
 
@@ -27,7 +27,7 @@
 
 ### 结果下载
 
-<img src="D:\LSBT\LogCheck\LogCheck\img\download_res.png" alt="download_res" style="zoom:40%;" />
+<img src=".\img\download_res.png" alt="download_res" style="zoom:40%;" />
 
 结果包括两个txt文件夹，直接保存到选定路径：
 
